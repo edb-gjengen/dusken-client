@@ -94,11 +94,11 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.dusken"
+        applicationId "no.neuf.chateau"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -111,10 +111,30 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            // locally
+            if (project.hasProperty('DUSKEN_RELEASE_STORE_FILE')) {
+                storeFile file(DUSKEN_RELEASE_STORE_FILE)
+                storePassword DUSKEN_RELEASE_STORE_PASSWORD
+                keyAlias DUSKEN_RELEASE_KEY_ALIAS
+                keyPassword DUSKEN_RELEASE_KEY_PASSWORD
+            }
+            // bitrise.io
+            else if (System.getenv('BITRISEIO_ANDROID_KEYSTORE_URL')) {
+                storeFile file(System.getenv("HOME") + "/keystores/my_keystore.jks")
+                storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
+                keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
