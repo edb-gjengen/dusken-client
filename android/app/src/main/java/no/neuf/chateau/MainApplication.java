@@ -1,4 +1,4 @@
-package com.dusken;
+package no.neuf.chateau;
 
 import android.app.Application;
 
