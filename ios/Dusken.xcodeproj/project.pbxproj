@@ -1090,7 +1090,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)""$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
 				INFOPLIST_FILE = DuskenTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1112,7 +1112,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)""$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
 				INFOPLIST_FILE = DuskenTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1136,7 +1136,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 8JB5XG2GPV;
-				HEADER_SEARCH_PATHS = "$(inherited)""$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
 				INFOPLIST_FILE = Dusken/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1156,7 +1156,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8JB5XG2GPV;
-				HEADER_SEARCH_PATHS = "$(inherited)""$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
 				INFOPLIST_FILE = Dusken/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1182,7 +1182,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)""$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
 				INFOPLIST_FILE = "Dusken-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1213,7 +1213,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)""$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig";
 				INFOPLIST_FILE = "Dusken-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
