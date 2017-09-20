@@ -58,4 +58,4 @@ fastlane/screenshots
 # Sentry
 android/sentry.properties
 ios/sentry.properties
-
+ios/Pods

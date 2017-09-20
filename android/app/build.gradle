@@ -155,6 +155,7 @@ android {
 }
 
 dependencies {
+    compile project(':tipsi-stripe')
     compile project(':react-native-sentry')
     compile project(':react-native-config')
     compile fileTree(dir: "libs", include: ["*.jar"])

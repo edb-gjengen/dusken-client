@@ -3,6 +3,7 @@ package no.neuf.chateau;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.gettipsi.stripe.StripeReactPackage;
 import io.sentry.RNSentryPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new StripeReactPackage(),
             new RNSentryPackage(MainApplication.this),
             new ReactNativeConfigPackage()
       );

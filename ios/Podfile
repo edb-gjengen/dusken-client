@@ -1,0 +1,14 @@
+platform :ios, '9.0'
+
+target 'Dusken' do
+  # use_frameworks!
+
+  # Pods for Dusken
+  pod 'Stripe', '~> 10.1.0'
+
+  target 'DuskenTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
