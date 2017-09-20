@@ -74,6 +74,7 @@ import com.android.build.OutputFile
  */
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-sentry/sentry.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -98,8 +99,8 @@ android {
         applicationId "no.neuf.chateau"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 14
-        versionName "1.1.0"
+        versionCode 16
+        versionName "1.1.2"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -154,6 +155,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-sentry')
     compile project(':react-native-config')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"

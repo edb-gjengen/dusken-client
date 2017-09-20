@@ -53,3 +53,9 @@ fastlane/Preview.html
 fastlane/screenshots
 
 .env
+*.swp
+
+# Sentry
+android/sentry.properties
+ios/sentry.properties
+
