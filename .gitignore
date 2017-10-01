@@ -52,7 +52,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 
-.env
+.env*
 *.swp
 
 # Sentry

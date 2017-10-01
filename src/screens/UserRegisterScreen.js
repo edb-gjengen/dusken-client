@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import LoginContainer from "../modules/login/LoginContainer";
+import UserRegisterContainer from "../modules/register/UserRegisterContainer";
 import {StyleProvider} from "native-base";
 import getTheme from '../../native-base-theme/components';
 
-export default class LoginScreen extends Component {
+export default class UserRegisterScreen extends Component {
     static navigationOptions = {
-        title: 'Logg inn',
+        title: 'Registrer',
         headerStyle: {
             backgroundColor: '#f58220',
         },
@@ -15,15 +15,15 @@ export default class LoginScreen extends Component {
         headerTintColor: 'white',
     };
 
-    onLogin = () => {
-        // This works since LoginScreen is allways navigated to from MembershipScreen
+    onRegister = () => {
+        // This works since UserRegisterScreen is allways navigated to from MembershipScreen
         this.props.navigation.goBack();
     };
 
     render() {
         return (
             <StyleProvider style={getTheme()}>
-                <LoginContainer onLogin={this.onLogin} />
+                <UserRegisterContainer onRegister={this.onRegister} />
             </StyleProvider>
         )
     }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import LoginContainer from "../modules/login/LoginContainer";
+import Charge from "../modules/membership/Charge";
 import {StyleProvider} from "native-base";
 import getTheme from '../../native-base-theme/components';
 
-export default class LoginScreen extends Component {
+export default class ChargeScreen extends Component {
     static navigationOptions = {
-        title: 'Logg inn',
+        title: 'Kjøp medlemskap',
         headerStyle: {
             backgroundColor: '#f58220',
         },
@@ -15,15 +15,15 @@ export default class LoginScreen extends Component {
         headerTintColor: 'white',
     };
 
-    onLogin = () => {
-        // This works since LoginScreen is allways navigated to from MembershipScreen
+    onCharged = () => {
+        // This works since ChargeScreen is allways navigated to from MembershipScreen
         this.props.navigation.goBack();
     };
 
     render() {
         return (
             <StyleProvider style={getTheme()}>
-                <LoginContainer onLogin={this.onLogin} />
+                <Charge onCharged={this.onCharged} />
             </StyleProvider>
         )
     }
