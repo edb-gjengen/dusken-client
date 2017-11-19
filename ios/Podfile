@@ -1,0 +1,5 @@
+platform :ios, '9.0'
+
+target 'Dusken' do
+  pod 'Stripe', '~> 11.2.0'
+end

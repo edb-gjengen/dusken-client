@@ -50,10 +50,13 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+*/fastlane/test_output
+android/google_play.json
 
-.env
+.env*
 *.swp
 
 # Sentry
 android/sentry.properties
 ios/sentry.properties
+ios/Pods
