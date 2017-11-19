@@ -1,12 +1,12 @@
 PODS:
-  - Stripe (10.1.0)
+  - Stripe (11.2.0)
 
 DEPENDENCIES:
-  - Stripe (~> 10.1.0)
+  - Stripe (~> 11.2.0)
 
 SPEC CHECKSUMS:
-  Stripe: 1c7aa951a075cced500a919d92b687b35d410705
+  Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
 
-PODFILE CHECKSUM: f7eeb7918fcad1c2afbf24caacdddea228bf0609
+PODFILE CHECKSUM: 273d0fa628aa24ffc6ca337ff5541ea938e9910c
 
 COCOAPODS: 1.3.1
