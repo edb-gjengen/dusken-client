@@ -103,8 +103,8 @@ android {
         applicationId "no.neuf.chateau"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 19
-        versionName "1.2.0"
+        versionCode 20
+        versionName "1.2.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
