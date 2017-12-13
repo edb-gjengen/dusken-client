@@ -2,4 +2,4 @@ defaults.url=https://sentry.neuf.no/
 defaults.org=sentry
 defaults.project=dusken-client
 auth.token=
-cli.executable=node_modules/sentry-cli-binary/bin/sentry-cli
+cli.executable=node_modules/@sentry/cli/bin/sentry-cli
