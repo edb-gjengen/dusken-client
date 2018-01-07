@@ -60,3 +60,4 @@ android/google_play.json
 android/sentry.properties
 ios/sentry.properties
 ios/Pods
+sentry.properties
