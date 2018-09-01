@@ -1,5 +1,5 @@
 import {Platform, StyleSheet} from 'react-native';
-import {TabNavigator, StackNavigator} from "react-navigation";
+import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
 
 import AboutScreen from "./screens/AboutScreen";
 import EventDetailScreen from "./screens/EventDetailScreen";
@@ -9,9 +9,9 @@ import MembershipScreen from "./screens/MembershipScreen";
 import UserRegisterScreen from "./screens/UserRegisterScreen";
 
 const tabBarRoutes = {
-    EventList: { screen: EventListScreen },
-    Membership: { screen: MembershipScreen },
-    About: { screen: AboutScreen },
+    EventList: EventListScreen,
+    Membership: MembershipScreen,
+    About: AboutScreen,
 };
 
 const tabBarOptions = {
@@ -44,13 +44,40 @@ const tabBarOptions = {
     }
 };
 
-const tabNav = TabNavigator(tabBarRoutes, tabBarOptions);
+const tabNav = createBottomTabNavigator(tabBarRoutes, tabBarOptions);
 
-const DuskenNavigation = StackNavigator({
-    Root: { screen: tabNav },
-    Login: { screen: LoginScreen },
-    UserRegister: { screen: UserRegisterScreen },
-    EventDetail: { screen: EventDetailScreen },
-});
+tabNav.navigationOptions = ({ navigation, screenProps }) => {
+    const tabTitles = {
+      EventList: 'Program',
+      Membership: 'Medlemskap',
+      About: 'Om oss',
+    };
+    const { routeName } = navigation.state.routes[navigation.state.index];
+
+    // You can do whatever you like here to pick the title based on the route name
+    return {
+        headerTitle: tabTitles[routeName],
+    };
+};
+
+const stackOptions = {
+  navigationOptions: {
+    initialRouteName: 'Home',
+    headerStyle: {
+      backgroundColor: '#f58220',
+    },
+    headerTitleStyle: {
+      color: 'white',
+    },
+    headerTintColor: 'white',
+  }
+};
+
+const DuskenNavigation = createStackNavigator({
+    Root: tabNav,
+    Login: LoginScreen,
+    UserRegister: UserRegisterScreen,
+    EventDetail: EventDetailScreen,
+}, stackOptions);
 
 export default DuskenNavigation;
