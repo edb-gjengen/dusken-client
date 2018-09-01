@@ -28,7 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new StripeReactPackage(),
-            new RNSentryPackage(MainApplication.this),
+            new RNSentryPackage(),
             new ReactNativeConfigPackage()
       );
     }

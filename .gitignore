@@ -64,3 +64,6 @@ ios/Pods
 sentry.properties
 
 ios/Dusken.app.dSYM.zip
+
+# Bundle artifact
+*.jsbundle
