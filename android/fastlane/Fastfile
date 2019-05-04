@@ -3,9 +3,7 @@
 
 # update_fastlane
 
-fastlane_version "2.73.0"
-
-default_platform :android
+default_platform(:android)
 
 platform :android do
   desc "Submit a new build to the Google Play Beta track"
@@ -17,5 +15,9 @@ platform :android do
     supply(track: "beta")
 
     slack(message: "Chateau Neuf app build uploaded to Google Play")
+  end
+
+  lane :build do
+    gradle(task: "assembleRelease")
   end
 end
