@@ -1,0 +1,10 @@
+git_url("git@git.neuf.no:edb/appstore-certs.git")
+
+storage_mode("git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier(["no.neuf.chateau"])
+username("nikolai@studentersamfundet.no")
+
+# The docs are available on https://docs.fastlane.tools/actions/match
