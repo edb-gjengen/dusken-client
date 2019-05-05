@@ -12,6 +12,8 @@
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,
     "react/prefer-stateless-function": 1,
+    "react/prop-types": 1, // FIXME: refactor
+    "class-methods-use-this": 1, // FIXME: refactor
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/sort-comp": 0,
     "max-len": 0,
