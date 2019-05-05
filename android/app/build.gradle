@@ -119,10 +119,13 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(DUSKEN_RELEASE_STORE_FILE)
-            storePassword DUSKEN_RELEASE_STORE_PASSWORD
-            keyAlias DUSKEN_RELEASE_KEY_ALIAS
-            keyPassword DUSKEN_RELEASE_KEY_PASSWORD
+            // These variables are in ~/.gradle/gradle.properties
+            if (project.hasProperty('DUSKEN_RELEASE_STORE_FILE')) {
+                storeFile file(DUSKEN_RELEASE_STORE_FILE)
+                storePassword DUSKEN_RELEASE_STORE_PASSWORD
+                keyAlias DUSKEN_RELEASE_KEY_ALIAS
+                keyPassword DUSKEN_RELEASE_KEY_PASSWORD
+            }
         }
     }
     buildTypes {
