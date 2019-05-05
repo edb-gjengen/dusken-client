@@ -7,7 +7,7 @@ platform :android do
   desc "Submit a new build to the Google Play Beta track"
   lane :beta do
     # build the release variant
-    gradle(task: "assemble", build_type: "Release")
+    gradle(task: "bundle", build_type: "Release")
 
     # upload to Google Play
     upload_to_play_store(track: "beta", skip_upload_images: true)
@@ -16,6 +16,6 @@ platform :android do
   end
 
   lane :build do
-    gradle(task: "assemble", build_type: "Release")
+    gradle(task: "bundle", build_type: "Release")
   end
 end
