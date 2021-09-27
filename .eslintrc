@@ -4,7 +4,7 @@
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings",
+    "plugin:import/warnings"
   ],
   "rules": {
     "no-plusplus": 0,
@@ -27,7 +27,7 @@
   "parser": "@babel/eslint-parser",
   "settings": {
     "react": {
-      "version": "16.8"
+      "version": "detect"
     }
   }
 }
