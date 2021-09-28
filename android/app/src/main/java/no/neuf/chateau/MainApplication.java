@@ -9,12 +9,6 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.gettipsi.stripe.StripeReactPackage;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import io.sentry.RNSentryPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -32,12 +26,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
-      packages.add(new AsyncStoragePackage());
-      packages.add(new RNSentryPackage());
-      packages.add(new StripeReactPackage());
-      packages.add(new VectorIconsPackage());
-      packages.add(new ReactNativeConfigPackage());
-      packages.add(new RNGestureHandlerPackage());
       return packages;
     }
 

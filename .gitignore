@@ -28,6 +28,7 @@ DerivedData
 local.properties
 *.iml
 *.hprof
+.project
 
 # node.js
 #
