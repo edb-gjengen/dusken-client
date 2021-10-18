@@ -1,27 +1,17 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import { StyleProvider } from 'native-base';
-import { useNavigation } from 'react-navigation-hooks';
-import EventListContainer from '../modules/events/EventListContainer';
-import getTheme from '../../native-base-theme/components';
+import { useNavigation } from '@react-navigation/native';
 
-const EventsScreen = () => {
+import EventListContainer from '../modules/events/EventListContainer';
+
+const EventListScreen = () => {
   const { navigate } = useNavigation();
   return (
-    <StyleProvider style={getTheme()}>
-      <EventListContainer
-        showEvent={(item) => {
-          navigate('EventDetail', { item });
-        }}
-      />
-    </StyleProvider>
+    <EventListContainer
+      showEvent={(item) => {
+        navigate('EventDetail', { item });
+      }}
+    />
   );
 };
 
-const tabBarIcon = ({ tintColor }) => <Icon name="event" size={16} color={tintColor} style={{ marginTop: 5 }} />;
-
-EventsScreen.navigationOptions = {
-  title: 'Program',
-  tabBarIcon,
-};
-export default EventsScreen;
+export default EventListScreen;

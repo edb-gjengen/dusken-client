@@ -1,278 +1,84 @@
-import React, { Component } from 'react';
-import { Container, Content, Form, Item, Input, Label, Spinner, Button, Text, Icon, Toast } from 'native-base';
+import React from 'react';
+import { Spinner, Button, Text, ScrollView } from 'native-base';
 import { StyleSheet, View } from 'react-native';
 import * as EmailValidator from 'email-validator';
 
 import theme from '../../theme';
+import useUserRegister from './useUserRegister';
+import FormInput from '../../components/FormInput';
+import FormErrors from '../../components/FormErrors';
 
-export default class UserRegister extends Component {
-  constructor(props) {
-    super(props);
+const UserRegister = () => {
+  const { isRegisteringUser, onSubmit, control, isValid, errors, setFocus } = useUserRegister();
+  const isDisabled = isRegisteringUser || !isValid;
+  // TODO: validate on type
+  // TODO: highlight errorfields
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      password: '',
-      errors: {},
-      touched: new Set(),
-    };
-  }
-
-  validateForm(triggeredBy) {
-    const fieldNames = ['firstName', 'lastName', 'email', 'phoneNumber', 'password'];
-
-    const errors = Object.assign({}, this.state.errors);
-    const touched = new Set(this.state.touched).add(triggeredBy);
-
-    /* No empty fields */
-    fieldNames.forEach((key) => {
-      const value = this.state[key];
-      if (value === '') {
-        errors[key] = 'kan ikke være tomt';
-      } else if (key === 'email' && !EmailValidator.validate(value)) {
-        errors[key] = 'er ikke en gyldig e-post';
-      } else {
-        delete errors[key];
-      }
-    });
-
-    this.setState({ errors, touched });
-  }
-
-  fieldHasError(field) {
-    return this.state.touched.has(field) && field in this.state.errors;
-  }
-
-  canSubmitForm() {
-    return Object.keys(this.state.errors).length === 0;
-  }
-
-  firstNameInput() {
-    return (
-      <Item error={this.fieldHasError('firstName')}>
-        <Label>Fornavn</Label>
-        <Input
+  return (
+    <ScrollView>
+      <View style={styles.card}>
+        <FormInput
+          name="firstName"
+          label="Fornavn"
+          control={control}
+          errors={errors}
           autoFocus={true}
-          returnKeyType="next"
-          onChangeText={(firstName) => {
-            this.setState({ firstName }, () => {
-              this.validateForm('firstName');
-            });
-          }}
-          onSubmitEditing={() => {
-            this.lastNameInputRef._root.focus();
-          }}
-          value={this.state.firstName}
+          onSubmitEditing={() => setFocus('lastName')}
         />
-        {this.fieldHasError('firstName') && <Icon name="close-circle" />}
-      </Item>
-    );
-  }
-
-  lastNameInput() {
-    return (
-      <Item error={this.fieldHasError('lastName')}>
-        <Label>Etternavn</Label>
-        <Input
-          ref={(ref) => {
-            this.lastNameInputRef = ref;
-          }}
-          returnKeyType="next"
-          onChangeText={(lastName) => {
-            this.setState({ lastName }, () => {
-              this.validateForm('lastName');
-            });
-          }}
-          onSubmitEditing={() => {
-            this.emailInputRef._root.focus();
-          }}
-          value={this.state.lastName}
+        <FormInput
+          name="lastName"
+          label="Etternavn"
+          control={control}
+          errors={errors}
+          onSubmitEditing={() => setFocus('email')}
         />
-        {this.fieldHasError('lastName') && <Icon name="close-circle" />}
-      </Item>
-    );
-  }
-
-  emailInput() {
-    return (
-      <Item error={this.fieldHasError('email')}>
-        <Label>E-post</Label>
-        <Input
-          ref={(ref) => {
-            this.emailInputRef = ref;
-          }}
+        <FormInput
+          name="email"
+          label="E-post"
+          control={control}
+          errors={errors}
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
-          returnKeyType="next"
-          onChangeText={(email) => {
-            this.setState({ email }, () => {
-              this.validateForm('email');
-            });
+          rules={{
+            required: 'kan ikke være tomt.',
+            validate: (v) => EmailValidator.validate(v) || 'er ikke en gyldig e-post',
           }}
-          onSubmitEditing={() => {
-            this.phoneInputRef._root.focus();
-          }}
-          value={this.state.email}
+          onSubmitEditing={() => setFocus('phoneNumber')}
         />
-        {this.fieldHasError('email') && <Icon name="close-circle" />}
-      </Item>
-    );
-  }
-
-  phoneNumberInput() {
-    return (
-      <Item error={this.fieldHasError('phoneNumber')}>
-        <Label>Mobilnummer</Label>
-        <Input
-          ref={(ref) => {
-            this.phoneInputRef = ref;
-          }}
-          returnKeyType="next"
+        <FormInput
+          name="phoneNumber"
+          label="Mobilnummer"
+          control={control}
+          errors={errors}
           keyboardType="phone-pad"
-          onChangeText={(phoneNumber) => {
-            this.setState({ phoneNumber }, () => {
-              this.validateForm('phoneNumber');
-            });
-          }}
-          onSubmitEditing={() => {
-            this.passwordInputRef._root.focus();
-          }}
-          value={this.state.phoneNumber}
+          onSubmitEditing={() => setFocus('password')}
         />
-        {this.fieldHasError('phoneNumber') && <Icon name="close-circle" />}
-      </Item>
-    );
-  }
-
-  passwordInput() {
-    return (
-      <Item error={this.fieldHasError('password')}>
-        <Label>Passord</Label>
-        <Input
-          ref={(ref) => {
-            this.passwordInputRef = ref;
-          }}
+        <FormInput
+          name="password"
+          label="Passord"
+          control={control}
+          errors={errors}
           secureTextEntry={true}
           autoCapitalize="none"
           autoCorrect={false}
-          onChangeText={(password) => {
-            this.setState({ password }, () => {
-              this.validateForm('password');
-            });
-          }}
-          onSubmitEditing={this.onRegisterPress}
-          value={this.state.password}
+          returnKeyType="send"
+          onSubmitEditing={onSubmit}
         />
-        {this.fieldHasError('password') && <Icon name="close-circle" />}
-      </Item>
-    );
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.registerError !== nextProps.registerError) {
-      this.setState({ errors: nextProps.registerError });
-    }
-  }
-
-  showNonFieldError = () => {
-    const errors = this.props.registerError;
-    if (Object.keys(errors).length !== 0 && 'non_field_errors' in errors) {
-      const err = errors.non_field_errors;
-      const errorFormatted = err ? err[0] : 'Kunne ikke registrere bruker, prøv igjen...';
-      return (
         <View style={styles.errorBox}>
-          <Text style={styles.errorMessage}>{errorFormatted}</Text>
+          <FormErrors errors={errors} />
         </View>
-      );
-    }
-    if (Object.keys(errors).length !== 0 && 'detail' in errors) {
-      const err = errors.detail;
-      const errorFormatted = err || 'Kunne ikke registrere bruker, prøv igjen...';
-      return (
-        <View style={styles.errorBox}>
-          <Text style={styles.errorMessage}>{errorFormatted}</Text>
-        </View>
-      );
-    }
+        <Button full disabled={isDisabled} onPress={onSubmit} style={styles.registerButton}>
+          <Text>Registrer meg</Text>
+        </Button>
+        {isRegisteringUser && <Spinner color="#f58220" />}
+      </View>
+    </ScrollView>
+  );
+};
 
-    return <View style={styles.errorBox} />;
-  };
+export default UserRegister;
 
-  showFieldError = (field) => {
-    if (!this.fieldHasError(field)) {
-      return null;
-    }
-    return (
-      <Item style={styles.errorText}>
-        <Text style={styles.errorMessage}>{this.state.errors[field]}</Text>
-      </Item>
-    );
-  };
-
-  showSpinner = () => {
-    if (!this.props.isRegisteringUser) {
-      return null;
-    }
-    return <Spinner color="#f58220" />;
-  };
-
-  render() {
-    return (
-      <Container style={styles.container}>
-        <Content keyboardShouldPersistTaps="always">
-          <Form style={styles.card}>
-            {this.firstNameInput()}
-            {this.showFieldError('firstName')}
-            {this.lastNameInput()}
-            {this.showFieldError('lastName')}
-            {this.emailInput()}
-            {this.showFieldError('email')}
-            {this.phoneNumberInput()}
-            {this.showFieldError('phoneNumber')}
-            {this.passwordInput()}
-            {this.showFieldError('password')}
-            {this.showNonFieldError()}
-            {this.registerbutton()}
-            {this.showSpinner()}
-          </Form>
-        </Content>
-      </Container>
-    );
-  }
-
-  onRegisterPress = () => {
-    if (!this.canSubmitForm()) {
-      Toast.show({
-        text: 'Noen av feltene er ikke fylt ut riktig',
-        position: 'bottom',
-        buttonText: 'OK',
-        duration: 1500,
-      });
-      return;
-    }
-
-    this.props.onRegisterPress(
-      this.state.firstName,
-      this.state.lastName,
-      this.state.email,
-      this.state.phoneNumber,
-      this.state.password
-    );
-  };
-
-  registerbutton() {
-    const isDisabled = this.state.touched.size === 0 || this.props.isRegisteringUser || !this.canSubmitForm();
-
-    return (
-      <Button full disabled={isDisabled} onPress={this.onRegisterPress} style={styles.registerButton}>
-        <Text>Registrer meg</Text>
-      </Button>
-    );
-  }
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -289,14 +95,5 @@ const styles = StyleSheet.create({
   errorBox: {
     marginVertical: 10,
   },
-  errorMessage: {
-    textAlign: 'center',
-    color: theme.colors.danger,
-    fontSize: 14,
-  },
   card: theme.card,
-  errorText: {
-    paddingTop: 2,
-    paddingBottom: 12,
-  },
 });

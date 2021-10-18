@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Root } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 
-import DuskenNavigation from './navigation';
+import Navigation from './Navigation';
 import { logout as logoutAction, registerUserSuccess as registerUserSuccessAction } from './actions';
 import { migrateReduxPersistFourToFive } from './utils';
 
@@ -20,9 +20,9 @@ const DuskenContainer = ({ registerUserSuccess, userToken, user, logout }) => {
   });
 
   return (
-    <Root>
-      <DuskenNavigation />
-    </Root>
+    <NativeBaseProvider>
+      <Navigation />
+    </NativeBaseProvider>
   );
 };
 
@@ -35,7 +35,4 @@ const mapDispatchToProps = {
   logout: logoutAction,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DuskenContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DuskenContainer);

@@ -4,6 +4,7 @@ import { Button, Text as NBText, Spinner } from 'native-base';
 import Confetti from 'react-native-confetti';
 
 import theme from '../../theme';
+import useProof from './useProof';
 
 const MembershipValidTo = ({ user }) => {
   if (!user.last_membership) {
@@ -118,19 +119,13 @@ const MembershipName = ({ user }) => {
   );
 };
 
-const Proof = ({
-  chargeError,
-  user,
-  fetchUser,
-  isFetchingUserData,
-  isChargingMembership,
-  isLoadingMembershipType,
-  membershipPrice,
-  onChargePress,
-  onLogoutPress,
-}) => {
+const Proof = ({ onLogoutPress, user, fetchUser, isFetchingUserData }) => {
   const CONFETTI_TIMEOUT = 15000;
   const confettiRef = useRef(null);
+  const { chargeError, isChargingMembership, isLoadingMembershipType, onChargePress, membershipPrice } = useProof({
+    user,
+    fetchUser,
+  });
 
   useEffect(() => {
     return () => {
@@ -148,6 +143,15 @@ const Proof = ({
       }
     }, CONFETTI_TIMEOUT);
   };
+
+  if (!user) {
+    console.log('🔥', user);
+    return (
+      <View>
+        <Text>No user!</Text>
+      </View>
+    );
+  }
 
   return (
     <View>
