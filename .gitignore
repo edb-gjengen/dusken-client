@@ -62,7 +62,10 @@ android/google_play.json
 # Sentry
 android/sentry.properties
 ios/sentry.properties
-ios/Pods
 sentry.properties
+
+# Ruby / CocoaPods
+/ios/Pods
+/vendor/bundle/
 
 ios/Dusken.app.dSYM.zip
