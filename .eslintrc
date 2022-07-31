@@ -8,16 +8,16 @@
     "plugin:jest/recommended"
   ],
   "rules": {
-    "no-plusplus": 0,
-    "no-console": 0,
-    "no-underscore-dangle": 0,
-    "no-param-reassign": 0,
-    "react/prefer-stateless-function": 1,
+    "no-plusplus": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "react/prefer-stateless-function": "error",
     "react/prop-types": "off",
     "class-methods-use-this": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/sort-comp": 0,
-    "max-len": 0,
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/sort-comp": "off",
+    "max-len": "off",
     "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }]
 
   },
