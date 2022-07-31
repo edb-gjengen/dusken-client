@@ -5,9 +5,6 @@ import { NativeModules } from 'react-native';
 // ref https://react-native-async-storage.github.io/async-storage/docs/advanced/jest
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 
-jest.doMock('tipsi-stripe', () => ({
-  setOptions: jest.fn(),
-}));
 jest.doMock('react-dom/server', () => {}, { virtual: true });
 
 global.fetch = require('jest-fetch-mock');
