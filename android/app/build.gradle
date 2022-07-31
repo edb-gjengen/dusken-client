@@ -187,7 +187,6 @@ android {
 }
 
 dependencies {
-    implementation project(':tipsi-stripe')
     implementation project(':react-native-config')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
